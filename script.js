@@ -27,3 +27,16 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+function generatePassword(){
+  var passwordLength = "0";
+  var specialChar = [];
+
+    passwordLength = prompt("How many characters do you want your password to be?");
+  
+    alert("Would you like to include lower case letters?");
+    alert("Would you like to include upper case letters?");
+    alert("Would you like to include numbers?");
+    alert("Would you like to include special characters?");
+
+  }
