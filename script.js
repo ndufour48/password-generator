@@ -46,4 +46,40 @@ function generatePassword(){
   numbers = confirm("Would you like to include numbers? \nOK = yes \nCancel = no");
   specialChar = confirm("Would you like to include special characters? \nOK = yes \nCancel = no");
 
+  while (pwCriteria.pwLength < passwordLength){
+
+    if (lowerCase === true && pwCriteria.pwLength < passwordLength) {
+      var lc = pwCriteria.pwLowerCase[Math.floor(Math.random() *26)]
+      result = result + lc;
+      pwCriteria.pwLength = pwCriteria.pwLength + 1;
+    }
+
+    if (specialChar === true && pwCriteria.pwLength < passwordLength) {
+      var sc = pwCriteria.pwCharacter[Math.floor(Math.random() *32)]
+      result = result + sc;
+      pwCriteria.pwLength = pwCriteria.pwLength + 1;
+    }
+
+    if (upperCase === true && pwCriteria.pwLength < passwordLength) {
+      var uc = pwCriteria.pwUpperCase[Math.floor(Math.random() *26)]
+      result = result + uc;
+      pwCriteria.pwLength = pwCriteria.pwLength + 1;
+    }
+
+    if (numbers === true && pwCriteria.pwLength < passwordLength) {
+      var num = pwCriteria.pwNumber[Math.floor(Math.random() *10)]
+      result = result + num;
+      pwCriteria.pwLength = pwCriteria.pwLength + 1;
+    }
+
+  }
+
+console.log (lc);
+console.log (uc);
+console.log (num);
+console.log (sc);
+console.log (result);
+console.log (result.length);
+
+return result;
 }
