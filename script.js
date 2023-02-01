@@ -25,7 +25,7 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-function generatePassword(){
+function generatePassword() {
   var result = "";
   var passwordLength = 0;
   var upperCase;
@@ -39,49 +39,74 @@ function generatePassword(){
 
   while (passwordLength < 8 || passwordLength > 128) {
   passwordLength = prompt("Your password must be between 8 and 128 characters. \nHow many characters do you want your password to be?");
-  showPrompts();
 
-  while (pwCriteria.pwLength < passwordLength){
-
-    if (lowerCase === false && upperCase === false && numbers === false && specialChar === false) {
-      alert("Uh-oh! To successfully generate a password, you must choose to include one or more of the following: \nlowercase letters \nuppercase letters \nnumbers \nspecial characters")
-      showPrompts();
-    }
+  if (passwordLength === null) {
+  return "Your Secure Password";
+  }
 
     else {
 
-      if (lowerCase === true && pwCriteria.pwLength < passwordLength) {
-        var lc = pwCriteria.pwLowerCase[Math.floor(Math.random() *26)]
-        result = result + lc;
-        pwCriteria.pwLength = pwCriteria.pwLength + 1;
+      if (!isFinite(passwordLength)) {
+      alert("Uh-oh! You didn't enter a number");
+      return "Your Secure Password";
       }
 
-      if (specialChar === true && pwCriteria.pwLength < passwordLength) {
-        var sc = pwCriteria.pwCharacter[Math.floor(Math.random() *32)]
-        result = result + sc;
-        pwCriteria.pwLength = pwCriteria.pwLength + 1;
-      }
+      else {
 
-      if (upperCase === true && pwCriteria.pwLength < passwordLength) {
-        var uc = pwCriteria.pwUpperCase[Math.floor(Math.random() *26)]
-        result = result + uc;
-        pwCriteria.pwLength = pwCriteria.pwLength + 1;
-      }
+        if (passwordLength < 8 || passwordLength > 128) {
+        alert("Uh-oh! Your password must be between 8 and 128 characters");
+        return "Your Secure Password";
+        }
 
-      if (numbers === true && pwCriteria.pwLength < passwordLength) {
-        var num = pwCriteria.pwNumber[Math.floor(Math.random() *10)]
-        result = result + num;
-        pwCriteria.pwLength = pwCriteria.pwLength + 1;
+        else {
+
+          showPrompts();
+
+          while (pwCriteria.pwLength < passwordLength) {
+
+            if (lowerCase === false && upperCase === false && numbers === false && specialChar === false) {
+            alert("Uh-oh! To successfully generate a password, you must choose to include one or more of the following: \nlowercase letters \nuppercase letters \nnumbers \nspecial characters")
+            showPrompts();
+            }
+
+            else {
+
+              if (lowerCase === true && pwCriteria.pwLength < passwordLength) {
+                var lc = pwCriteria.pwLowerCase[Math.floor(Math.random() *26)]
+                result = result + lc;
+                pwCriteria.pwLength = pwCriteria.pwLength + 1;
+              }
+
+              if (specialChar === true && pwCriteria.pwLength < passwordLength) {
+                var sc = pwCriteria.pwCharacter[Math.floor(Math.random() *32)]
+                result = result + sc;
+                pwCriteria.pwLength = pwCriteria.pwLength + 1;
+              }
+
+              if (upperCase === true && pwCriteria.pwLength < passwordLength) {
+                var uc = pwCriteria.pwUpperCase[Math.floor(Math.random() *26)]
+                result = result + uc;
+                pwCriteria.pwLength = pwCriteria.pwLength + 1;
+              }
+
+              if (numbers === true && pwCriteria.pwLength < passwordLength) {
+                var num = pwCriteria.pwNumber[Math.floor(Math.random() *10)]
+                result = result + num;
+                pwCriteria.pwLength = pwCriteria.pwLength + 1;
+              }
+            }
+          }
+        }
       }
     }
   }
-}
 
-function showPrompts(){
-  lowerCase = confirm("Would you like to include lower case letters? \nOK = yes \nCancel = no");
-  upperCase = confirm("Would you like to include upper case letters? \nOK = yes \nCancel = no");
-  numbers = confirm("Would you like to include numbers? \nOK = yes \nCancel = no");
-  specialChar = confirm("Would you like to include special characters? \nOK = yes \nCancel = no");
-}
-return result;
+  return result;
+
+  function showPrompts(){
+    lowerCase = confirm("Would you like to include lower case letters? \nOK = yes \nCancel = no");
+    upperCase = confirm("Would you like to include upper case letters? \nOK = yes \nCancel = no");
+    numbers = confirm("Would you like to include numbers? \nOK = yes \nCancel = no");
+    specialChar = confirm("Would you like to include special characters? \nOK = yes \nCancel = no");
+  }
 }
